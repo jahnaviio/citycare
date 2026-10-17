@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CityCare – Report Road Problems &amp; Get Quick Help</title>
+<style>
+:root{--navy:#0b2f5b;--blue:#1e63b5;--sky:#e8f1fb;--bg:#fff;--card:#fff;--tx:#1b2430;--mut:#5b6675;--bd:#d8e0ea;--hd:#0b2f5b;--saf:#ff9933;--grn:#138808;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#142030;--tx:#e8eef6;--mut:#9fb0c4;--bd:#25384f;--sky:#162a42;--navy:#0a2342;--hd:#9cc4f5}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#142030;--tx:#e8eef6;--mut:#9fb0c4;--bd:#25384f;--sky:#162a42;--navy:#0a2342;--hd:#9cc4f5}
+*{box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:70px}
+body{margin:0;font-family:"Segoe UI",Roboto,"Noto Sans","Noto Sans Telugu",Arial,sans-serif;background:var(--bg);color:var(--tx);line-height:1.55}
+.tri{height:5px;background:linear-gradient(90deg,var(--saf) 33%,#fff 33% 66%,var(--grn) 66%)}
+.top{background:var(--sky);font-size:.8rem;padding:6px 5%;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;color:var(--mut)}
+.top button{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:4px;padding:2px 8px;cursor:pointer;margin-left:4px}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;gap:12px;flex-wrap:wrap;box-shadow:0 2px 10px #0004}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.35rem}.logo i{font-style:normal;background:#fff;color:var(--navy);border-radius:50%;width:38px;height:38px;display:grid;place-items:center}
+.logo small{display:block;font-weight:400;font-size:.68rem;opacity:.8;letter-spacing:.5px}
+nav a{color:#fff;text-decoration:none;margin-left:16px;font-size:.92rem;padding:4px 0;border-bottom:2px solid transparent}nav a:hover{border-color:var(--saf)}
+.hero{position:relative;height:430px;overflow:hidden;background:var(--navy);color:#fff}
+.sl{position:absolute;inset:0;display:flex;align-items:center;padding:0 8%;opacity:0;transform:translateX(60px);transition:all .9s ease}
+.sl.on{opacity:1;transform:none}
+.sl:nth-child(1){background:linear-gradient(110deg,#0b2f5b,#1e63b5)}.sl:nth-child(2){background:linear-gradient(110deg,#0b3d3a,#138808)}.sl:nth-child(3){background:linear-gradient(110deg,#4a2a08,#d9731a)}
+.sl h1{font-size:clamp(1.7rem,4.5vw,3rem);margin:0 0 10px;line-height:1.2}.sl p{max-width:520px;opacity:.92;margin:0 0 20px}
+.sl .big{position:absolute;right:7%;font-size:clamp(6rem,18vw,13rem);opacity:.9;animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.btn{display:inline-block;background:var(--saf);color:#1b1200;font-weight:700;border:0;padding:12px 24px;border-radius:6px;cursor:pointer;text-decoration:none;font-size:1rem;transition:transform .2s}.btn:hover{transform:translateY(-2px)}
+.dots{position:absolute;bottom:14px;left:0;right:0;text-align:center}.dots b{display:inline-block;width:10px;height:10px;border-radius:50%;background:#fff6;margin:0 4px;cursor:pointer}.dots b.on{background:#fff;width:26px;border-radius:6px}
+.tick{background:var(--saf);color:#1b1200;font-size:.88rem;padding:6px 0;overflow:hidden;white-space:nowrap}.tick span{display:inline-block;padding-left:100%;animation:mq 30s linear infinite}@keyframes mq{to{transform:translateX(-100%)}}
+section{padding:56px 5%;max-width:1150px;margin:auto}section h2{color:var(--hd);margin:0 0 6px;font-size:1.7rem}
+.sub{color:var(--mut);margin:0 0 26px}.bar{width:60px;height:4px;background:var(--saf);margin:6px 0 14px;border-radius:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:22px;box-shadow:0 2px 8px #0001;transition:.25s}.card:hover{transform:translateY(-6px);box-shadow:0 10px 24px #0002;border-color:var(--blue)}
+.card .ic{font-size:2.3rem}.card h3{margin:8px 0 4px;color:var(--hd)}
+.stats{background:var(--navy);color:#fff;max-width:none}.stats .grid{max-width:1150px;margin:auto;text-align:center}.stats b{font-size:2.4rem;display:block;color:var(--saf)}
+.step{text-align:center}.step span{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 10px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:1.3rem}
+.qh{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.qh a{display:block;text-decoration:none;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-left:5px solid var(--blue);border-radius:8px;padding:16px;font-weight:600;transition:.25s;cursor:pointer}.qh a:hover{transform:translateY(-4px);box-shadow:0 8px 20px #0002}
+.qh a.em{border-left-color:#d93025}.qh a.wm{border-left-color:#c2185b}
+form{display:grid;gap:14px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:24px;max-width:700px}
+label{font-weight:600;font-size:.9rem}input,select,textarea{width:100%;padding:10px;border:1px solid var(--bd);border-radius:6px;font:inherit;background:var(--bg);color:var(--tx);margin-top:4px}
+.row{display:flex;gap:10px}.row input{flex:1}.btn2{background:var(--blue);color:#fff;border:0;border-radius:6px;padding:0 14px;cursor:pointer;white-space:nowrap}
+#prev{max-width:180px;border-radius:8px;display:none}#msg{font-weight:600;color:var(--tx)}#msg a{display:inline-block;margin:6px 8px 0 0;background:var(--blue);color:#fff;padding:6px 12px;border-radius:6px;text-decoration:none}
+.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:10px}table{border-collapse:collapse;width:100%;min-width:600px;background:var(--card)}th{background:var(--navy);color:#fff;text-align:left}th,td{padding:11px 14px;border-bottom:1px solid var(--bd);font-size:.92rem}td a{color:var(--blue);font-weight:700;text-decoration:none}
+.b{padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:700;color:#fff}.R{background:#d93025}.P{background:#e08a00}.S{background:var(--grn)}
+.flt{margin-bottom:12px}.flt button{border:1px solid var(--blue);background:var(--card);color:var(--tx);border-radius:20px;padding:5px 14px;margin:0 6px 6px 0;cursor:pointer}.flt .on{background:var(--blue);color:#fff}
+.th{width:46px;height:46px;object-fit:cover;border-radius:6px;cursor:pointer}td select{width:auto;margin:0 6px 4px 0;padding:4px}td button{background:var(--blue);color:#fff;border:0;border-radius:6px;padding:5px 10px;cursor:pointer}
+footer{background:var(--navy);color:#cfe0f5;padding:30px 5%;font-size:.88rem;text-align:center}footer b{color:#fff}
+.rv{opacity:0;transform:translateY(34px);transition:all .7s}.rv.in{opacity:1;transform:none}
+:focus-visible{outline:3px solid var(--saf);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="tri"></div>
+<div class="top"><span><span data-i="ts">Text size</span> <button onclick="fs(-1)">A−</button><button onclick="fs(0)">A</button><button onclick="fs(1)">A+</button> <button id="lg" onclick="lang()">తెలుగు</button> <button onclick="th()">◐ <span data-i="tm">Theme</span></button></span></div>
+<header><div class="logo"><i>🏙️</i><div>CityCare<small data-i="tag">ONE-STOP ROAD &amp; ROADSIDE REPORTING</small></div></div>
+<nav><a href="#home" data-i="n1">Home</a><a href="#report" data-i="n2">Report</a><a href="#help" data-i="n3">Quick Help</a><a href="#contacts" data-i="n4">City Contacts</a><a href="#dash" data-i="n5">Dashboard</a><a href="#how" data-i="n6">How it works</a></nav></header>
+<div class="hero" id="home">
+<div class="sl on"><div><h1 data-i="h1">See a road problem?<br>Report it in 30 seconds.</h1><p data-i="p1">Potholes, cracks and roadblocks reach the right department when everyone can see them.</p><a class="btn" href="#report" data-i="b1">Report a problem</a></div><div class="big">🚧</div></div>
+<div class="sl"><div><h1 data-i="h2">Out of fuel or lost your way?</h1><p data-i="p2">Find nearby petrol pumps, directions and emergency numbers with one tap.</p><a class="btn" href="#help" data-i="b2">Get quick help</a></div><div class="big">⛽</div></div>
+<div class="sl"><div><h1 data-i="h3">Track every report, openly.</h1><p data-i="p3">A public dashboard shows each complaint as Reported, In Progress or Solved.</p><a class="btn" href="#dash" data-i="b3">View dashboard</a></div><div class="big">📊</div></div>
+<div class="dots"></div></div>
+<div class="tick"><span data-i="tk">🚨 Emergency? Dial 112 &nbsp; • &nbsp; Women in danger? Dial 1091 &nbsp; • &nbsp; Every report with a photo and location helps your city act faster &nbsp; • &nbsp; Clean, safe roads for everyone</span></div>
+<section><h2 data-i="w1">What can you report?</h2><div class="bar"></div><p class="sub" data-i="w2">Choose a category and CityCare shows who can help in your city.</p>
+<div class="grid">
+<div class="card rv"><div class="ic">🕳️</div><h3 data-i="c1">Road damage</h3><p data-i="d1">Potholes, cracks and broken surfaces that cause accidents.</p></div>
+<div class="card rv"><div class="ic">🚧</div><h3 data-i="c2">Roadblock</h3><p data-i="d2">Fallen trees, debris or construction blocking the way.</p></div>
+<div class="card rv"><div class="ic">🐕</div><h3 data-i="c3">Dead animal</h3><p data-i="d3">Keep roads clean and prevent disease and accidents.</p></div>
+<div class="card rv"><div class="ic">⛽</div><h3 data-i="c4">Out of fuel</h3><p data-i="d4">Petrol or diesel finished? Find nearby pumps and mechanics.</p></div>
+<div class="card rv"><div class="ic">🧭</div><h3 data-i="c5">Lost route</h3><p data-i="d5">Not sure where you are? Get directions in maps.</p></div>
+<div class="card rv"><div class="ic">⚠️</div><h3 data-i="c6">Unsafe area</h3><p data-i="d6">Feel the area is not secure? Get help and alert someone you trust.</p></div></div></section>
+<section class="stats"><div class="grid"><div class="rv"><b data-n="6">0</b><span data-i="s1">Report categories</span></div><div class="rv"><b data-n="30">0</b><span data-i="s2">Seconds to report</span></div><div class="rv"><b data-n="100">0</b><span data-i="s3">% free to use</span></div><div class="rv"><b>24/7</b><span data-i="s4">Always available</span></div></div></section>
+<section id="how"><h2 data-i="hw">How it works</h2><div class="bar"></div><div class="grid" style="margin-top:20px"><div class="step rv"><span>1</span><div data-i="k1">Pick a category</div></div><div class="step rv"><span>2</span><div data-i="k2">Add photo &amp; location</div></div><div class="step rv"><span>3</span><div data-i="k3">Get the right contact</div></div><div class="step rv"><span>4</span><div data-i="k4">Track the status</div></div></div></section>
+<section id="report"><h2 data-i="rh">Report a problem</h2><div class="bar"></div>
+<form id="f"><div><label data-i="fc">Category</label><select id="cat"><option data-i="c1">Road damage</option><option data-i="c2">Roadblock</option><option data-i="c3">Dead animal</option><option data-i="c4">Out of fuel</option><option data-i="c5">Lost route</option><option data-i="c6">Unsafe area</option></select></div>
+<div><label data-i="fl">Location</label><div class="row"><input id="loc" data-p="Area, street or landmark" placeholder="Area, street or landmark" required><button type="button" class="btn2" onclick="gps()" data-i="fg">📍 Use my location</button></div></div>
+<div><label data-i="fp">Photo</label><input type="file" id="ph" accept="image/*"><img id="prev" alt=""></div>
+<div><label data-i="fn">Your name (optional)</label><input id="nm" autocomplete="name" maxlength="80"></div>
+<div><label data-i="fm">Mobile number *</label><input id="pn" type="tel" inputmode="numeric" maxlength="14" placeholder="10-digit mobile number" required><small data-i="fq" style="color:var(--mut)">Private. Only the department can see your number, so they can call you for details.</small></div>
+<div><label data-i="fd">Description (optional)</label><textarea id="ds" rows="3"></textarea></div>
+<button class="btn" type="submit" data-i="fs">Submit report</button><div id="msg" role="status"></div></form></section>
+<section id="help"><h2 data-i="qh">Quick Help</h2><div class="bar"></div><p class="sub" data-i="qs">One tap to get help when you need it.</p>
+<div class="qh">
+<a href="https://www.google.com/maps/search/petrol+pump+near+me" target="_blank" rel="noopener" data-i="q1">⛽ Nearby petrol pumps</a>
+<a href="https://www.google.com/maps/search/mechanic+near+me" target="_blank" rel="noopener" data-i="q2">🔧 Nearby mechanic &amp; towing</a>
+<a href="https://www.google.com/maps" target="_blank" rel="noopener" data-i="q3">🧭 Get directions (Maps)</a>
+<a href="https://www.google.com/maps/search/police+station+near+me" target="_blank" rel="noopener" data-i="q4">🚓 Nearest police station</a>
+<a href="https://www.google.com/maps/search/hospital+near+me" target="_blank" rel="noopener" data-i="q5">🏥 Nearest hospital</a>
+<a class="em" href="tel:112" data-i="q6">📞 112 Emergency</a>
+<a class="em" href="tel:100" data-i="q7">👮 100 Police</a>
+<a class="em" href="tel:108" data-i="q8">🚑 108 Ambulance</a>
+<a class="wm" href="tel:1091" data-i="q9">👩 1091 Women helpline</a>
+<a class="wm" onclick="share()" data-i="q10">📤 Share my location</a></div></section>
+<section id="contacts"><h2 data-i="ch">City contact directory</h2><div class="bar"></div><p class="sub" data-i="cs">Visakhapatnam (GVMC) and national helplines. Tap a number to call.</p>
+<div class="tw"><table><tr><th data-i="t1">Problem</th><th data-i="t2">Department</th><th data-i="t3">Contact</th></tr>
+<tr><td data-i="r1">Any emergency or accident</td><td data-i="e1">National Emergency Number</td><td><a href="tel:112">112</a></td></tr>
+<tr><td data-i="r2">Crime, danger or feeling unsafe</td><td data-i="e2">Police</td><td><a href="tel:100">100</a></td></tr>
+<tr><td data-i="r3">Injury or medical emergency</td><td data-i="e3">Ambulance</td><td><a href="tel:108">108</a></td></tr>
+<tr><td data-i="r4">Women in danger</td><td data-i="e4">Women Helpline</td><td><a href="tel:1091">1091</a> · <a href="tel:181">181</a></td></tr>
+<tr><td data-i="r5">Road damage, roadblock</td><td data-i="e5">GVMC Citizen Helpline (Engineering)</td><td><a href="tel:180042500009">1800 425 00009</a> · <a href="tel:1913">1913</a></td></tr>
+<tr><td data-i="r6">Street light</td><td data-i="e6">GVMC Helpline / Power faults</td><td><a href="tel:180042500009">1800 425 00009</a> · <a href="tel:1912">1912</a></td></tr>
+<tr><td data-i="r7">Drainage, sewage</td><td data-i="e7">GVMC Citizen Helpline</td><td><a href="tel:180042500009">1800 425 00009</a></td></tr>
+<tr><td data-i="r8">Dead animal</td><td data-i="e8">GVMC Sanitation / Public Health</td><td><a href="tel:180042500009">1800 425 00009</a> · <a href="https://wa.me/919666909192" target="_blank" rel="noopener">WhatsApp</a></td></tr>
+<tr><td data-i="r9">Highway breakdown</td><td data-i="e9">NHAI Highway Helpline</td><td><a href="tel:1033">1033</a></td></tr>
+<tr><td data-i="r10">Child in need</td><td data-i="e10">Childline</td><td><a href="tel:1098">1098</a></td></tr></table></div></section>
+<section id="dash"><h2 data-i="dh">Public dashboard</h2><div class="bar"></div><p class="sub" data-i="ds2">All reports and their current status.</p>
+<p id="mode" class="sub" style="font-weight:600"></p><div class="flt"></div><div class="tw"><table><thead><tr><th data-i="x1">ID</th><th data-i="x2">Category</th><th data-i="x3">Location</th><th data-i="x4">Date</th><th data-i="x6">Photo</th><th data-i="x5">Status</th><th id="ath" data-i="x7" style="display:none">Department</th></tr></thead><tbody id="tb"></tbody></table></div></section>
+<div id="md" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:#000b;z-index:50;place-items:center;padding:20px"><div id="mc" style="background:var(--card);color:var(--tx);padding:20px;border-radius:10px;max-width:90vw;max-height:90vh;overflow:auto"></div></div>
+<footer><b>CityCare</b> · Community Service Project<br><span data-i="ft">A student project, not an official government website.</span></footer>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const te={ts:'అక్షర పరిమాణం',tm:'థీమ్',tag:'రోడ్డు & రోడ్డు పక్క సమస్యల రిపోర్టింగ్',n1:'హోమ్',n2:'రిపోర్ట్',n3:'త్వరిత సహాయం',n4:'సిటీ సంప్రదింపులు',n5:'డ్యాష్‌బోర్డ్',n6:'ఎలా పనిచేస్తుంది',
+h1:'రోడ్డు సమస్య కనిపించిందా?<br>30 సెకన్లలో రిపోర్ట్ చేయండి.',p1:'గుంతలు, పగుళ్లు, రోడ్డు అడ్డంకులను అందరూ చూడగలిగితే అవి సరైన శాఖకు చేరుతాయి.',b1:'సమస్యను రిపోర్ట్ చేయండి',
+h2:'ఇంధనం అయిపోయిందా? దారి తప్పారా?',p2:'దగ్గరలోని పెట్రోల్ బంకులు, దిశలు, అత్యవసర నంబర్లను ఒక్క ట్యాప్‌తో పొందండి.',b2:'త్వరిత సహాయం పొందండి',
+h3:'ప్రతి రిపోర్ట్‌ను బహిరంగంగా ట్రాక్ చేయండి.',p3:'ప్రతి ఫిర్యాదు రిపోర్ట్ చేయబడింది, పురోగతిలో ఉంది లేదా పరిష్కరించబడింది అని డ్యాష్‌బోర్డ్‌లో కనిపిస్తుంది.',b3:'డ్యాష్‌బోర్డ్ చూడండి',
+tk:'🚨 అత్యవసరమా? 112 కు డయల్ చేయండి • ప్రమాదంలో ఉన్న మహిళలు 1091 కు డయల్ చేయండి • ఫోటో, లొకేషన్‌తో ఉన్న ప్రతి రిపోర్ట్ మీ నగరం త్వరగా స్పందించడానికి సహాయపడుతుంది',
+w1:'మీరు ఏమి రిపోర్ట్ చేయవచ్చు?',w2:'వర్గాన్ని ఎంచుకోండి, మీ నగరంలో ఎవరు సహాయం చేయగలరో CityCare చూపిస్తుంది.',
+c1:'రోడ్డు దెబ్బతినడం',d1:'గుంతలు, పగుళ్లు, ప్రమాదాలకు కారణమయ్యే విరిగిన రోడ్లు.',c2:'రోడ్డు అడ్డంకి',d2:'పడిపోయిన చెట్లు, చెత్త లేదా నిర్మాణ పనులు దారిని అడ్డుకోవడం.',c3:'చనిపోయిన జంతువు',d3:'రోడ్లను శుభ్రంగా ఉంచి వ్యాధులు, ప్రమాదాలను నివారించండి.',
+c4:'ఇంధనం అయిపోయింది',d4:'పెట్రోల్ లేదా డీజిల్ అయిపోయిందా? దగ్గరలోని బంకులు, మెకానిక్‌లను కనుగొనండి.',c5:'దారి తప్పారు',d5:'ఎక్కడ ఉన్నారో తెలియదా? మ్యాప్స్‌లో దిశలు పొందండి.',c6:'అసురక్షిత ప్రాంతం',d6:'ఆ ప్రాంతం సురక్షితంగా అనిపించలేదా? సహాయం పొందండి, నమ్మకమైన వారికి తెలియజేయండి.',
+s1:'రిపోర్ట్ వర్గాలు',s2:'రిపోర్ట్ చేయడానికి సెకన్లు',s3:'% ఉచితం',s4:'ఎల్లప్పుడూ అందుబాటులో',hw:'ఎలా పనిచేస్తుంది',k1:'వర్గాన్ని ఎంచుకోండి',k2:'ఫోటో & లొకేషన్ జోడించండి',k3:'సరైన సంప్రదింపు పొందండి',k4:'స్థితిని ట్రాక్ చేయండి',
+rh:'సమస్యను రిపోర్ట్ చేయండి',fc:'వర్గం',fl:'లొకేషన్',fg:'📍 నా లొకేషన్ ఉపయోగించండి',fp:'ఫోటో',fd:'వివరణ (ఐచ్ఛికం)',fs:'రిపోర్ట్ సమర్పించండి',
+qh:'త్వరిత సహాయం',qs:'అవసరమైనప్పుడు ఒక్క ట్యాప్‌తో సహాయం పొందండి.',q1:'⛽ దగ్గరలోని పెట్రోల్ బంకులు',q2:'🔧 దగ్గరలోని మెకానిక్ & టోయింగ్',q3:'🧭 దిశలు పొందండి (మ్యాప్స్)',q4:'🚓 దగ్గరలోని పోలీస్ స్టేషన్',q5:'🏥 దగ్గరలోని ఆసుపత్రి',q6:'📞 112 అత్యవసరం',q7:'👮 100 పోలీస్',q8:'🚑 108 అంబులెన్స్',q9:'👩 1091 మహిళా హెల్ప్‌లైన్',q10:'📤 నా లొకేషన్ షేర్ చేయండి',
+ch:'సిటీ సంప్రదింపుల డైరెక్టరీ',cs:'విశాఖపట్నం (GVMC) మరియు జాతీయ హెల్ప్‌లైన్‌లు. కాల్ చేయడానికి నంబర్‌ను ట్యాప్ చేయండి.',t1:'సమస్య',t2:'శాఖ',t3:'సంప్రదింపు',
+r1:'ఏదైనా అత్యవసరం లేదా ప్రమాదం',e1:'జాతీయ అత్యవసర నంబర్',r2:'నేరం, ప్రమాదం లేదా అసురక్షితంగా అనిపించడం',e2:'పోలీస్',r3:'గాయం లేదా వైద్య అత్యవసరం',e3:'అంబులెన్స్',r4:'ప్రమాదంలో ఉన్న మహిళలు',e4:'మహిళా హెల్ప్‌లైన్',r5:'రోడ్డు దెబ్బతినడం, రోడ్డు అడ్డంకి',e5:'GVMC పౌర హెల్ప్‌లైన్ (ఇంజనీరింగ్)',r6:'వీధి దీపం',e6:'GVMC హెల్ప్‌లైన్ / విద్యుత్ సమస్యలు',r7:'డ్రైనేజీ, మురుగు',e7:'GVMC పౌర హెల్ప్‌లైన్',r8:'చనిపోయిన జంతువు',e8:'GVMC పారిశుధ్యం / ప్రజారోగ్యం',r9:'హైవేపై వాహనం ఆగిపోవడం',e9:'NHAI హైవే హెల్ప్‌లైన్',r10:'సహాయం అవసరమైన చిన్నారి',e10:'చైల్డ్‌లైన్',
+dh:'పబ్లిక్ డ్యాష్‌బోర్డ్',ds2:'అన్ని రిపోర్ట్‌లు మరియు వాటి ప్రస్తుత స్థితి.',x1:'ఐడి',x2:'వర్గం',x3:'ప్రాంతం',x4:'తేదీ',x5:'స్థితి',fn:'మీ పేరు (ఐచ్ఛికం)',fm:'మొబైల్ నంబర్ *',fq:'ఇది గోప్యం. వివరాల కోసం కాల్ చేయడానికి శాఖకు మాత్రమే మీ నంబర్ కనిపిస్తుంది.',x6:'ఫోటో',x7:'శాఖ',ft:'ఇది విద్యార్థుల ప్రాజెక్ట్, అధికారిక ప్రభుత్వ వెబ్‌సైట్ కాదు.'};
+const en={};$$('[data-i]').forEach(e=>{en[e.dataset.i]=e.innerHTML});
+let te_=0;
+function lang(){te_=!te_;$('#lg').textContent=te_?'English':'తెలుగు';document.documentElement.lang=te_?'te':'en';
+$$('[data-i]').forEach(e=>{let k=e.dataset.i;e.innerHTML=te_?(te[k]||en[k]):en[k]});
+$('#loc').placeholder=te_?'ప్రాంతం, వీధి లేదా ల్యాండ్‌మార్క్':'Area, street or landmark';draw()}
+let i=0,sl=$$('.sl'),dt=$('.dots');sl.forEach((_,k)=>{let d=document.createElement('b');d.onclick=()=>go(k);dt.append(d)});
+function go(k){i=k;sl.forEach((s,j)=>s.classList.toggle('on',j==k));$$('.dots b').forEach((d,j)=>d.classList.toggle('on',j==k))}go(0);setInterval(()=>go((i+1)%sl.length),5000);
+let z=16;function fs(d){z=d?Math.min(20,Math.max(13,z+d)):16;document.documentElement.style.fontSize=z+'px'}
+function th(){let r=document.documentElement,d=matchMedia('(prefers-color-scheme:dark)').matches;let cur=r.dataset.theme||(d?'dark':'light');r.dataset.theme=cur=='dark'?'light':'dark'}
+const LT={R:['Reported','రిపోర్ట్ చేయబడింది'],P:['In Progress','పురోగతిలో ఉంది'],S:['Solved','పరిష్కరించబడింది']};
+const CN=['Road damage','Roadblock','Dead animal','Out of fuel','Lost route','Unsafe area'];
+let rs=[],st={},cts={},flt='All',isAdmin=false,DB=null,UID=null,canW=false;
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cat=n=>te_?(te['c'+(CN.indexOf(n)+1)]||n):n;
+const okImg=p=>typeof p=='string'&&p.startsWith('data:image/jpeg;base64,');
+function draw(){let f=$('.flt');f.innerHTML=['All','R','P','S'].map(x=>`<button data-f="${x}">${x=='All'?(te_?'అన్నీ':'All'):LT[x][te_?1:0]}</button>`).join('');
+$$('.flt button').forEach(b=>{b.classList.toggle('on',b.dataset.f==flt);b.onclick=()=>{flt=b.dataset.f;draw()}});
+$('#ath').style.display=isAdmin?'':'none';
+let L=rs.filter(r=>flt=='All'||(st[r.id]||'R')==flt);
+$('#tb').innerHTML=L.length?L.map(r=>{let s_=st[r.id]||'R';return `<tr><td>${esc(r.id)}</td><td>${cat(r.cat)}</td><td>${esc(r.loc)}</td><td>${new Date(r.created).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</td><td>${okImg(r.photo)?`<img class="th" src="${r.photo}" data-id="${esc(r.id)}" alt="">`:'–'}</td><td><span class="b ${s_}">${LT[s_][te_?1:0]}</span></td>${isAdmin?`<td><select data-st="${esc(r.id)}">${['R','P','S'].map(x=>`<option value="${x}"${x==s_?' selected':''}>${LT[x][te_?1:0]}</option>`).join('')}</select><button data-ct="${esc(r.id)}" data-u="${esc(r.uid||'')}">${te_?'సంప్రదింపు':'Contact'}</button></td>`:''}</tr>`}).join(''):`<tr><td colspan="7">${te_?'ఇంకా రిపోర్ట్‌లు లేవు.':'No reports yet. Be the first to report a problem.'}</td></tr>`}
+function modal(h){$('#mc').innerHTML=h;$('#md').style.display='grid'}
+$('#tb').addEventListener('click',async e=>{let t=e.target;
+if(t.classList.contains('th')){let r=rs.find(x=>x.id==t.dataset.id);if(r&&okImg(r.photo)){modal(`<img src="${r.photo}" style="max-width:100%;border-radius:8px" alt="">`)}}
+if(t.dataset.ct){let id=t.dataset.ct,c=null;try{c=DB?(await DB.doc(`contacts/${t.dataset.u}/r/${id}`).get()).data():cts[id]}catch(x){}
+modal(c?`<b>${esc(id)}</b><br>${c.name?esc(c.name)+'<br>':''}📞 <a href="tel:${esc(c.phone)}">${esc(c.phone)}</a>`:(te_?'సంప్రదింపు వివరాలు లేవు.':'No contact details available.'))}});
+$('#tb').addEventListener('change',async e=>{let t=e.target;if(!t.dataset.st)return;let id=t.dataset.st,v=t.value;
+try{if(DB)await DB.doc('status/'+id).set({s:v});else{st[id]=v;localStorage.setItem('cc3',JSON.stringify({rs,st,cts}));draw()}}catch(x){alert(te_?'స్థితిని మార్చలేకపోయాము.':'Could not update status.')}});
+function gps(){navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>$('#loc').value=p.coords.latitude.toFixed(5)+', '+p.coords.longitude.toFixed(5),()=>alert(te_?'లొకేషన్ అనుమతి లేదు. ప్రాంతాన్ని టైప్ చేయండి.':'Location blocked. Please type the area.')):alert('Not supported')}
+function share(){let go=u=>window.open('https://wa.me/?text='+encodeURIComponent((te_?'నేను ఇక్కడ ఉన్నాను: ':'My location: ')+u),'_blank');navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>go('https://www.google.com/maps?q='+p.coords.latitude+','+p.coords.longitude),()=>alert(te_?'లొకేషన్ అనుమతి ఇవ్వండి.':'Please allow location access.')):alert('Not supported')}
+$('#ph').onchange=e=>{let f=e.target.files[0];if(f){$('#prev').src=URL.createObjectURL(f);$('#prev').style.display='block'}};
+function shrink(f){return new Promise(res=>{if(!f)return res('');let im=new Image();im.onload=()=>{let m=720,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);let q=.65,d=c.toDataURL('image/jpeg',q);while(d.length>170000&&q>.3){q-=.1;d=c.toDataURL('image/jpeg',q)}res(d.length>200000?'':d)};im.onerror=()=>res('');im.src=URL.createObjectURL(f)})}
+const A=(h,t)=>`<a href="${h}" target="_blank" rel="noopener">${t}</a>`,T=(h,t)=>`<a href="${h}">${t}</a>`;
+function help(k){const M='https://www.google.com/maps/search/';
+if(k==3)return A(M+'petrol+pump+near+me',te_?'⛽ దగ్గరలోని బంకులు':'⛽ Nearby petrol pumps')+A(M+'mechanic+near+me',te_?'🔧 మెకానిక్':'🔧 Mechanic & towing');
+if(k==4)return A('https://www.google.com/maps',te_?'🧭 మ్యాప్స్ తెరవండి':'🧭 Open Maps');
+if(k==5)return T('tel:112','📞 112')+T('tel:1091','👩 1091')+A(M+'police+station+near+me',te_?'🚓 పోలీస్ స్టేషన్':'🚓 Police station');
+return T('tel:180042500009',te_?'📞 GVMC హెల్ప్‌లైన్':'📞 GVMC helpline')+A('https://wa.me/919666909192','WhatsApp')}
+$('#f').onsubmit=async e=>{e.preventDefault();
+let phone=$('#pn').value.replace(/\D/g,'').slice(-10);
+if(!/^[6-9]\d{9}$/.test(phone)){alert(te_?'సరైన 10 అంకెల మొబైల్ నంబర్ ఇవ్వండి.':'Enter a valid 10-digit mobile number.');return}
+let k=$('#cat').selectedIndex,id='CC-'+Math.random().toString(36).slice(2,7).toUpperCase(),photo=await shrink($('#ph').files[0]);
+let r={id,cat:CN[k],loc:$('#loc').value.slice(0,200),desc:$('#ds').value.slice(0,500),photo,created:Date.now(),uid:UID||'local'},c={name:$('#nm').value.slice(0,80),phone};
+try{if(canW){await DB.doc(`contacts/${UID}/r/${id}`).set(c);await DB.doc('reports/'+id).set(r)}
+else{rs.unshift(r);cts[id]=c;localStorage.setItem('cc3',JSON.stringify({rs,st,cts}));draw()}}
+catch(x){alert(te_?'రిపోర్ట్ సేవ్ కాలేదు. మీకు యాక్సెస్ లేకపోవచ్చు.':'Could not save the report. You may have view-only access; ask the owner for Contributor access.');return}
+$('#msg').innerHTML='✅ '+(te_?'రిపోర్ట్ ':'Report ')+id+(te_?' సమర్పించబడింది. శాఖ మిమ్మల్ని సంప్రదిస్తుంది. సహాయం:':' submitted. The department can call you if needed. Get help:')+'<br>'+help(k);
+$('#f').reset();$('#prev').style.display='none';$('#msg').scrollIntoView({block:'center'})};
+(async()=>{let cl=window.claude;
+try{let u=cl&&await cl.use('user');if(u){isAdmin=await u.canEdit();UID=await u.id();canW=(await u.can('data.write'))!==false}DB=cl&&await cl.use('db')}catch(x){DB=null}
+if(DB&&UID){$('#mode').textContent=isAdmin?(te_?'శాఖ వీక్షణ: మీరు స్థితి మార్చవచ్చు, సంప్రదింపు వివరాలు చూడవచ్చు.':'Department view: update status and see contact details.'):'';
+DB.collection('reports').orderBy('created','desc').limit(200).onSnapshot(sn=>{rs=sn.docs.map(d=>d.data());draw()},()=>{});
+DB.collection('status').onSnapshot(sn=>{st={};sn.docs.forEach(d=>st[d.id]=d.data().s);draw()},()=>{})}
+else{DB=null;canW=false;isAdmin=true;try{let o=JSON.parse(localStorage.getItem('cc3')||'{}');rs=o.rs||[];st=o.st||{};cts=o.cts||{}}catch(x){}
+$('#mode').textContent='Offline demo mode: reports are saved on this device only.'}
+draw()})();
+let io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');let n=x.target.querySelector('b[data-n]');if(n&&!n.d){n.d=1;let t=+n.dataset.n,v=0,h=setInterval(()=>{v+=Math.ceil(t/40);if(v>=t){v=t;clearInterval(h)}n.textContent=v},30)}}}),{threshold:.2});
+$$('.rv').forEach(e=>io.observe(e));
+</script></body></html>
